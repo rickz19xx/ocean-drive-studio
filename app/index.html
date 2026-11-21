@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Cover Studio — GTA-style poster maker</title>
+<link rel="stylesheet" href="./style.css">
+</head>
+<body>
+
+<!-- Full-bleed cover used by ?shot=cover: one canvas, window-sized, nothing else. -->
+<div id="shot"><canvas id="shotCanvas"></canvas></div>
+
+<div id="app">
+  <header class="topbar">
+    <div class="brand"><b>Cover&nbsp;Studio</b><span>six panels · one heist</span></div>
+    <div class="sizes" id="sizes"></div>
+    <div class="spacer"></div>
+    <button class="btn" id="reseed" title="Re-roll the crop layout">Re-roll layout</button>
+    <button class="btn primary" id="exportBtn">Export PNG</button>
+  </header>
+
+  <div class="workspace">
+    <aside class="card rail">
+      <div>
+        <h2>Photo</h2>
+        <div class="drop" id="drop">
+          Drop a photo here<br><small>or click to choose · JPG / PNG</small>
+        </div>
+        <input type="file" id="file" accept="image/*" class="hide">
+        <div class="thumbs" id="thumbs"></div>
+      </div>
+
+      <div>
+        <h2>Captions</h2>
+        <label class="field"><i>Main title</i>
+          <input type="text" id="title" maxlength="22" placeholder="SUNSET HEIST" autocomplete="off" spellcheck="false">
+        </label>
+        <label class="field"><i>Subtitle</i>
+          <input type="text" id="subtitle" maxlength="72" placeholder="a cover studio original" autocomplete="off" spellcheck="false">
+        </label>
+        <label class="field"><i>Strap line — top</i>
+          <input type="text" id="strapTop" maxlength="64" autocomplete="off" spellcheck="false">
+        </label>
+        <label class="field"><i>Strap line — bottom</i>
+          <input type="text" id="strapBottom" maxlength="64" autocomplete="off" spellcheck="false">
+        </label>
+      </div>
+
+      <div class="stats">Poster <b id="statSize">1080 × 1080</b></div>
+    </aside>
+
+    <main>
+      <div class="stage">
+        <canvas id="preview"></canvas>
+        <div class="hint" id="hint">pick a panel, then drag to pan · scroll to zoom</div>
+      </div>
+    </main>
+
+    <aside class="card">
+      <h2>Panels</h2>
+      <div class="panels" id="panelList"></div>
+      <div class="row" style="margin-top:12px">
+        <button class="btn" id="resetZoom">Fit panel</button>
+        <button class="btn" id="shuffle">Shuffle crops</button>
+      </div>
+      <label class="field"><i>Grade strength</i>
+        <input type="range" id="grade" min="0" max="150" value="100">
+      </label>
+      <label class="field"><i>Grain &amp; bloom</i>
+        <input type="range" id="grain" min="0" max="150" value="100">
+      </label>
+    </aside>
+  </div>
+</div>
+
+<script type="module" src="./src/ui.js"></script>
+</body>
+</html>
